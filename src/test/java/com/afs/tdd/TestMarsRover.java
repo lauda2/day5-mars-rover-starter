@@ -13,7 +13,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.M);
 
         Location expectLocation = new Location(0, 1, Direction.N);
-        assertEquals(marsRover.getLocation().toString(), expectLocation.toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.M);
 
         Location expectLocation = new Location(1, 0, Direction.E);
-        assertEquals(marsRover.getLocation().toString(), expectLocation.toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.M);
 
         Location expectLocation = new Location(0, -1, Direction.S);
-        assertEquals(marsRover.getLocation().toString(), expectLocation.toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -46,6 +46,17 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.M);
 
         Location expectLocation = new Location(-1, 0, Direction.W);
-        assertEquals(marsRover.getLocation().toString(), expectLocation.toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
+    }
+
+    @Test
+    public void should_return_W_when_command_L() {
+        Location location = new Location(0, 0, Direction.N);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeCommand(Command.L);
+
+        Location expectLocation = new Location(0, 0, Direction.W);
+        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
     }
 }
