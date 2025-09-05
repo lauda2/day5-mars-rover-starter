@@ -142,4 +142,15 @@ public class TestMarsRover {
         Location expectLocation = new Location(x, y, Direction.N);
         assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
     }
+
+    @Test
+    public void should_y_minus_when_command_B() {
+        Location location = new Location(x, y, Direction.N);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeCommand(Command.B);
+
+        Location expectLocation = new Location(x, y - 1, Direction.N);
+        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+    }
 }
