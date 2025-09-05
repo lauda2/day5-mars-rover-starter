@@ -125,4 +125,15 @@ public class TestMarsRover {
         Location expectLocation = new Location(0, 0, Direction.W);
         assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
     }
+
+    @Test
+    public void should_return_N_when_command_R() {
+        Location location = new Location(0, 0, Direction.W);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeCommand(Command.R);
+
+        Location expectLocation = new Location(0, 0, Direction.N);
+        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+    }
 }
