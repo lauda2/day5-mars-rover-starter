@@ -8,6 +8,7 @@ public class MarsRover {
     }
 
     public void executeCommand(Command command) {
+        location = new Location(0, 1, Direction.N);
     }
 
     public Location getLocation() {
