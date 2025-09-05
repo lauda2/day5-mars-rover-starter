@@ -7,7 +7,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestMarsRover {
-    private final Random rand = new Random();;
+    private final Random rand = new Random();
     int x = rand.nextInt();
     int y = rand.nextInt();
 
