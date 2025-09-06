@@ -10,46 +10,19 @@ public class MarsRover {
     }
 
     public void executeCommand(Command command) {
-        if (command == Command.M) {
-            if (location.direction() == Direction.N) {
-                location = new Location(location.x(), location.y() + 1, Direction.N);
-            } else if (location.direction() == Direction.E) {
-                location = new Location(location.x() + 1, location.y(), Direction.E);
-            } else if (location.direction() == Direction.S) {
-                location = new Location(location.x(), location.y() - 1, Direction.S);
-            } else if (location.direction() == Direction.W) {
-                location = new Location(location.x() - 1, location.y(), Direction.W);
-            }
-        } else if (command == Command.L) {
-            if (location.direction() == Direction.N) {
-                location = new Location(location.x(), location.y(), Direction.W);
-            } else if (location.direction() == Direction.E) {
-                location = new Location(location.x(), location.y(), Direction.N);
-            } else if (location.direction() == Direction.S) {
-                location = new Location(location.x(), location.y(), Direction.E);
-            } else if (location.direction() == Direction.W) {
-                location = new Location(location.x(), location.y(), Direction.S);
-            }
-        } else if (command == Command.R) {
-            if (location.direction() == Direction.N) {
-                location = new Location(location.x(), location.y(), Direction.E);
-            } else if (location.direction() == Direction.E) {
-                location = new Location(location.x(), location.y(), Direction.S);
-            } else if (location.direction() == Direction.S) {
-                location = new Location(location.x(), location.y(), Direction.W);
-            } else if (location.direction() == Direction.W) {
-                location = new Location(location.x(), location.y(), Direction.N);
-            }
-        } else if (command == Command.B) {
-            if (location.direction() == Direction.N) {
-                location = new Location(location.x(), location.y() - 1, Direction.N);
-            } else if (location.direction() == Direction.E) {
-                location = new Location(location.x() - 1, location.y(), Direction.E);
-            } else if (location.direction() == Direction.S) {
-                location = new Location(location.x(), location.y() + 1, Direction.S);
-            } else if (location.direction() == Direction.W) {
-                location = new Location(location.x() + 1, location.y(), Direction.W);
-            }
+        switch (command) {
+            case M -> location = new Location(
+                    location.x() + (location.direction() == Direction.E ? 1 : location.direction() == Direction.W ? -1 : 0),
+                    location.y() + (location.direction() == Direction.N ? 1 : location.direction() == Direction.S ? -1 : 0),
+                    location.direction()
+            );
+            case B -> location = new Location(
+                    location.x() + (location.direction() == Direction.E ? -1 : location.direction() == Direction.W ? 1 : 0),
+                    location.y() + (location.direction() == Direction.N ? -1 : location.direction() == Direction.S ? 1 : 0),
+                    location.direction()
+            );
+            case L -> location = new Location(location.x(), location.y(), location.direction().left());
+            case R -> location = new Location(location.x(), location.y(), location.direction().right());
         }
     }
 
