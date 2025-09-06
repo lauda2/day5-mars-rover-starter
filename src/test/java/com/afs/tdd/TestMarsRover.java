@@ -63,7 +63,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.L);
 
         Location expectLocation = new Location(x, y, Direction.W);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.L);
 
         Location expectLocation = new Location(x, y, Direction.N);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.L);
 
         Location expectLocation = new Location(x, y, Direction.E);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.L);
 
         Location expectLocation = new Location(x, y, Direction.S);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.R);
 
         Location expectLocation = new Location(x, y, Direction.E);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -118,7 +118,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.R);
 
         Location expectLocation = new Location(x, y, Direction.S);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -129,7 +129,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.R);
 
         Location expectLocation = new Location(x, y, Direction.W);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -140,7 +140,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.R);
 
         Location expectLocation = new Location(x, y, Direction.N);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.B);
 
         Location expectLocation = new Location(x, y - 1, Direction.N);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -162,7 +162,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.B);
 
         Location expectLocation = new Location(x - 1, y, Direction.E);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.B);
 
         Location expectLocation = new Location(x, y + 1, Direction.S);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
@@ -184,28 +184,50 @@ public class TestMarsRover {
         marsRover.executeCommand(Command.B);
 
         Location expectLocation = new Location(x + 1, y, Direction.W);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
-    public void should_turn_left_and_move_when_command_LM() {
+    public void should_stay_when_no_command() {
         Location location = new Location(x, y, Direction.N);
         MarsRover marsRover = new MarsRover(location);
 
-        marsRover.executeBatchCommand(new Command[]{Command.L, Command.M});
+        marsRover.executeBatchCommand(new Command[]{});
 
-        Location expectLocation = new Location(x - 1, y, Direction.W);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        Location expectLocation = new Location(x, y, Direction.N);
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 
     @Test
-    public void should_turn_right_and_move_when_command_RM() {
+    public void should_return_y_plus_when_command_M_batch() {
         Location location = new Location(x, y, Direction.N);
         MarsRover marsRover = new MarsRover(location);
 
-        marsRover.executeBatchCommand(new Command[]{Command.R, Command.M});
+        marsRover.executeBatchCommand(new Command[]{Command.M});
 
-        Location expectLocation = new Location(x + 1, y, Direction.E);
-        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+        Location expectLocation = new Location(x, y + 1, Direction.N);
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
+    }
+
+    @Test
+    public void should_stay_when_command_MBLR() {
+        Location location = new Location(x, y, Direction.N);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeBatchCommand(new Command[]{Command.M, Command.B, Command.L, Command.R});
+
+        Location expectLocation = new Location(x, y, Direction.N);
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
+    }
+
+    @Test
+    public void should_x_minus_y_minus_when_command_LMRB() {
+        Location location = new Location(x, y, Direction.N);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeBatchCommand(new Command[]{Command.L, Command.M, Command.R, Command.B});
+
+        Location expectLocation = new Location(x - 1, y - 1, Direction.N);
+        assertEquals(expectLocation.toString(), marsRover.getLocation().toString());
     }
 }
