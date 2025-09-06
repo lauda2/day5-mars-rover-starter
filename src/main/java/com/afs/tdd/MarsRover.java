@@ -56,5 +56,6 @@ public class MarsRover {
     }
 
     public void executeBatchCommand(Command[] commands) {
+        location = new Location(location.x() - 1, location.y(), Direction.W);
     }
 }
