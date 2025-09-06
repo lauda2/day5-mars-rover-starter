@@ -186,4 +186,15 @@ public class TestMarsRover {
         Location expectLocation = new Location(x + 1, y, Direction.W);
         assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
     }
+
+    @Test
+    public void should_turn_left_and_move_when_command_LM() {
+        Location location = new Location(x, y, Direction.N);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeBatchCommand(new Command[]{Command.L, Command.M});
+
+        Location expectLocation = new Location(x - 1, y, Direction.W);
+        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+    }
 }

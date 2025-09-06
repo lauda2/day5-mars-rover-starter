@@ -54,4 +54,7 @@ public class MarsRover {
     public Location getLocation() {
         return location;
     }
+
+    public void executeBatchCommand(Command[] commands) {
+    }
 }
