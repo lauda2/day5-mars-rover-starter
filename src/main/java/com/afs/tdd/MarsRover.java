@@ -1,5 +1,7 @@
 package com.afs.tdd;
 
+import java.util.Arrays;
+
 public class MarsRover {
     private Location location;
 
@@ -56,6 +58,6 @@ public class MarsRover {
     }
 
     public void executeBatchCommand(Command[] commands) {
-        location = new Location(location.x() - 1, location.y(), Direction.W);
+        Arrays.stream(commands).forEach(this::executeCommand);
     }
 }
