@@ -164,4 +164,16 @@ public class TestMarsRover {
         Location expectLocation = new Location(x - 1, y, Direction.E);
         assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
     }
+
+    @Test
+    public void should_y_plus_when_command_B() {
+        Location location = new Location(x, y, Direction.S);
+        MarsRover marsRover = new MarsRover(location);
+
+        marsRover.executeCommand(Command.B);
+
+        Location expectLocation = new Location(x, y + 1, Direction.S);
+        assertEquals(expectLocation.toString() , marsRover.getLocation().toString());
+    }
+
 }
